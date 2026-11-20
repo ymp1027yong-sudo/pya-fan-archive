@@ -99,6 +99,32 @@ document.querySelectorAll('#videoGrid .video-card')
     card.prepend(details);
   });
 
+document.querySelectorAll('#videoGrid .video-card')
+  .forEach((card, i) => {
+    const v = videos[i];
+    if (!v || !v.youtubeId) return;
+
+    const img = document.createElement('img');
+    img.src = 'https://img.youtube.com/vi/' +
+      v.youtubeId + '/hqdefault.jpg';
+    img.alt = v.title + ' YouTube 封面';
+    img.style.cssText =
+      'width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;display:block;margin:0 0 18px;';
+
+    const link = document.createElement('a');
+    link.href = 'https://www.youtube.com/watch?v=' + v.youtubeId;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.append(img);
+
+    const details = card.firstElementChild;
+    if (details) {
+      details.insertAdjacentElement('afterend', link);
+    } else {
+      card.prepend(link);
+    }
+  });
+
 const dateInput=document.getElementById('eventDate');const stored=localStorage.getItem('pyaEventDate');if(stored)dateInput.value=stored;else{const d=new Date();d.setDate(d.getDate()+30);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());dateInput.value=d.toISOString().slice(0,16)}dateInput.addEventListener('change',()=>{localStorage.setItem('pyaEventDate',dateInput.value);tick()});function tick(){const target=new Date(dateInput.value).getTime();const diff=Math.max(0,target-Date.now());const vals=[Math.floor(diff/86400000),Math.floor(diff/3600000)%24,Math.floor(diff/60000)%60,Math.floor(diff/1000)%60];['days','hours','minutes','seconds'].forEach((id,i)=>document.getElementById(id).textContent=String(vals[i]).padStart(2,'0'));document.getElementById('eventTitle').textContent=diff===0?'THE MOMENT IS HERE':'YOUR NEXT SPECIAL MOMENT'}tick();setInterval(tick,1000);document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body></html>
