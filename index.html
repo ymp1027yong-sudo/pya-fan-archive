@@ -38,6 +38,42 @@
 </section>
 <section id="gallery"><div class="kicker">02 / Captured moments</div><h2 class="section-title">Photo Archive.</h2><p class="section-copy">點擊照片卡片即可放大。以下是可替換的示範相框，尚未使用藝人照片。</p><div class="gallery" id="galleryGrid"></div></section>
 <section id="stage"><div class="kicker">03 / On the stage</div><h2 class="section-title">Performances.</h2><p class="section-copy">收藏最喜歡的舞台。加入經確認的官方 YouTube 影片網址後，這裡就能直接開啟影片。</p><div class="video-grid" id="videoGrid"></div></section>
+
+<!-- MUSIC SECTION -->
+<section id="music" style="padding:100px 8%;">
+  <div class="kicker">04 / MUSIC COLLECTION</div>
+  <h2 class="section-title">Music.</h2>
+  <p class="section-copy">收藏喜歡的音樂作品。</p>
+
+  <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- 專輯封面 -->
+    <div style="width:280px;max-width:100%;aspect-ratio:1;background:#193454;border:1px solid #456080;display:flex;align-items:center;justify-content:center;color:#9db8d8;">
+      專輯封面
+    </div>
+
+    <!-- 歌曲資訊 -->
+    <div style="flex:1;min-width:240px;">
+      <h3 style="font-size:30px;margin:0 0 8px;">Draw Me Back</h3>
+      <p style="color:#9db8d8;">Saturnday</p>
+
+      <h4 style="color:#b4d5ff;margin-top:25px;">ABOUT THE SONG</h4>
+      <p style="color:#b9c9dc;line-height:2;">
+        這裡可以寫這首歌的介紹、創作背景、
+        歌曲風格，以及你想分享的故事。
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:25px;">
+        <a href="#" target="_blank">Apple Music ↗</a>
+        <a href="#" target="_blank">Spotify ↗</a>
+        <a href="#" target="_blank">KKBOX ↗</a>
+        <a href="#" target="_blank">YouTube Music ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section id="events"><div class="kicker">04 / Moments ahead</div><h2 class="section-title">The Countdown.</h2><p class="section-copy">設定你想期待的日期。這是示範倒數，不代表已確認的公開活動。</p><div class="countdown"><div class="kicker" id="eventTitle">YOUR NEXT SPECIAL MOMENT</div><div class="timer"><div class="unit"><strong id="days">00</strong><span>DAYS</span></div><div class="unit"><strong id="hours">00</strong><span>HOURS</span></div><div class="unit"><strong id="minutes">00</strong><span>MINUTES</span></div><div class="unit"><strong id="seconds">00</strong><span>SECONDS</span></div></div><label for="eventDate">選擇示範日期（僅儲存在目前瀏覽器）</label><input id="eventDate" type="datetime-local"></div></section></main>
 <footer><div class="brand">PYA / FAN ARCHIVE</div><p>UNOFFICIAL FAN-MADE WEBSITE · 非官方粉絲網站，與藝人、經紀公司或官方團隊無隸屬關係。<br>所有藝人照片、影片及資料請確認使用權限並註明來源。</p><p>Made with admiration. © <span id="year"></span></p></footer>
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="照片預覽"><button id="closeLightbox" aria-label="關閉預覽">×</button><img id="lightboxImg" alt=""><p id="lightboxCaption"></p></div>
