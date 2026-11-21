@@ -275,7 +275,100 @@ document.querySelectorAll('#videoGrid .video-card')
     }
   });
 
-const dateInput=document.getElementById('eventDate');const stored=localStorage.getItem('pyaEventDate');if(stored)dateInput.value=stored;else{const d=new Date();d.setDate(d.getDate()+30);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());dateInput.value=d.toISOString().slice(0,16)}dateInput.addEventListener('change',()=>{localStorage.setItem('pyaEventDate',dateInput.value);tick()});function tick(){const target=new Date(dateInput.value).getTime();const diff=Math.max(0,target-Date.now());const vals=[Math.floor(diff/86400000),Math.floor(diff/3600000)%24,Math.floor(diff/60000)%60,Math.floor(diff/1000)%60];['days','hours','minutes','seconds'].forEach((id,i)=>document.getElementById(id).textContent=String(vals[i]).padStart(2,'0'));document.getElementById('eventTitle').textContent=diff===0?'THE MOMENT IS HERE':'YOUR NEXT SPECIAL MOMENT'}tick();setInterval(tick,1000);document.getElementById('year').textContent=new Date().getFullYear();
+
+/* SATURNDAY SCHEDULE 活動資料 */
+const scheduleEvents = [
+  {
+    name: "SATURNDAY BACK TO SATURDAY",
+    date: "2026-11-22T14:00:00+08:00"
+  },
+  {
+    name: "活動二",
+    date: "2027-01-16T14:00:00+08:00"
+  },
+  {
+    name: "活動三",
+    date: "2027-03-20T19:00:00+08:00"
+  }
+];
+
+/* 目前選擇的活動 */
+let selectedSchedule = 0;
+
+const scheduleList = document.getElementById("scheduleList");
+const eventTitle = document.getElementById("eventTitle");
+const selectedEventDate = document.getElementById("selectedEventDate");
+
+function renderSchedule() {
+  scheduleList.innerHTML = "";
+
+  scheduleEvents.forEach((event, index) => {
+    const button = document.createElement("button");
+    button.textContent = event.name;
+
+    button.style.cssText = `
+      background: ${index === selectedSchedule ? "#315783" : "#10233b"};
+      color: white;
+      border: 1px solid #7298c5;
+      padding: 14px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    `;
+
+    button.addEventListener("click", () => {
+      selectedSchedule = index;
+      renderSchedule();
+      updateScheduleCountdown();
+    });
+
+    scheduleList.appendChild(button);
+  });
+}
+
+function updateScheduleCountdown() {
+  const event = scheduleEvents[selectedSchedule];
+  if (!event) return;
+
+  const target = new Date(event.date).getTime();
+  const diff = Math.max(0, target - Date.now());
+
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff / 3600000) % 24);
+  const minutes = Math.floor((diff / 60000) % 60);
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  eventTitle.textContent =
+    diff === 0 ? event.name + "｜活動已開始" : event.name;
+
+  selectedEventDate.textContent =
+    "活動時間：" +
+    new Date(event.date).toLocaleString("zh-TW", {
+      timeZone: "Asia/Taipei",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+}
+
+renderSchedule();
+updateScheduleCountdown();
+setInterval(updateScheduleCountdown, 1000);
+
+/* 頁尾年份 */
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
 console.log('網站程式執行完成');
 </script>
 </body></html>
