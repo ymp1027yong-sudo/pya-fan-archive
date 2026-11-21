@@ -389,6 +389,7 @@ function updateScheduleCountdown() {
       hour: "2-digit",
       minute: "2-digit",
 
+      
       hour12: false
     });
 }
@@ -407,16 +408,18 @@ console.log('網站程式執行完成');
 <script data-goatcounter="https://yong.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
 
+
 <script>
 window.addEventListener("load", function () {
-  if (window.goatcounter && window.goatcounter.visit_count) {
-    window.goatcounter.visit_count({
-      append: "#visitorCounter",
-      path: "TOTAL",
-      no_branding: true
-    });
+  const counter = document.getElementById("visitorCounter");
+  if (counter) {
+    counter.innerHTML =
+      '<iframe src="https://yong.goatcounter.com/counter/TOTAL.html" ' +
+      'style="border:0;width:250px;height:90px;" ' +
+      'title="網站累積瀏覽次數"></iframe>';
   }
 });
 </script>
+
 
 </body></html>
