@@ -149,6 +149,14 @@
 </section>
 </main>
 
+  
+<div style="text-align:center;padding:35px;color:#9fc4fa;">
+  <p style="font-size:12px;letter-spacing:3px;">
+    TOTAL VISITS
+  </p>
+  <div id="visitorCounter"></div>
+</div>
+
   <footer><div class="brand">PYA / FAN ARCHIVE</div><p>UNOFFICIAL FAN-MADE WEBSITE · 非官方粉絲網站，與藝人、經紀公司或官方團隊無隸屬關係。<br>所有藝人照片、影片及資料請確認使用權限並註明來源。</p><p>Made with admiration. © <span id="year"></span></p></footer>
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="照片預覽"><button id="closeLightbox" aria-label="關閉預覽">×</button><img id="lightboxImg" alt=""><p id="lightboxCaption"></p></div>
 
@@ -380,6 +388,7 @@ function updateScheduleCountdown() {
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
+
       hour12: false
     });
 }
@@ -394,4 +403,20 @@ document.getElementById("year").textContent =
 
 console.log('網站程式執行完成');
 </script>
+
+<script data-goatcounter="https://yong.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+
+<script>
+window.addEventListener("load", function () {
+  if (window.goatcounter && window.goatcounter.visit_count) {
+    window.goatcounter.visit_count({
+      append: "#visitorCounter",
+      path: "TOTAL",
+      no_branding: true
+    });
+  }
+});
+</script>
+
 </body></html>
