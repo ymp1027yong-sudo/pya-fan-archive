@@ -296,7 +296,9 @@ const scheduleEvents = [
 ];
 
 /* 目前選擇的活動 */
-let selectedSchedule = 0;
+let selectedSchedule = scheduleEvents.findIndex(
+  event => event.visible !== false
+);
 
 const scheduleList = document.getElementById("scheduleList");
 const eventTitle = document.getElementById("eventTitle");
@@ -306,6 +308,7 @@ function renderSchedule() {
   scheduleList.innerHTML = "";
 
   scheduleEvents.forEach((event, index) => {
+     if (event.visible === false) return;
     const button = document.createElement("button");
     button.textContent = event.name;
 
